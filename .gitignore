@@ -29,10 +29,7 @@
 *.app
 
 # Visual Studio files
-*.sln
 *.VC.db
-*.vcxproj
-*.vcxproj.filters
 *.VC.opendb
 *.tlog
 *.ilk
