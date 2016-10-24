@@ -1,12 +1,12 @@
 /**
-	CUNY Queens College - CS211 | CardGame
-	Name:		Deck.cpp
-	Purpose:	Creates a stack of Card* to represent a deck
-
-	@author		Sean Rodriguez <sean.rodriguez@gmail.com>
-	@copyright	Sean Rodriguez October 21, 2016
-	@version	1.0 
-*/
+ * CUNY Queens College - CS211 | CardGame
+ * Name: Deck.cpp
+ * Purpose: Creates a stack of Card* to represent a deck
+ *
+ * @author Sean Rodriguez <sean.rodriguez@gmail.com>
+ * @copyright Sean Rodriguez October 21, 2016
+ * @version 1.0
+ */
 
 #include <ctime>
 #include <cstdlib>

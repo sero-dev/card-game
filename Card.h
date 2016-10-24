@@ -1,12 +1,12 @@
 /**
-	CUNY Queens College - CS211 | CardGame
-	Name:		Card.h
-	Purpose:	Creates a card object that holds a rank, suit, and value 
-
-	@author		Sean Rodriguez <sean.rodriguez@gmail.com>
-	@copyright	Sean Rodriguez October 21, 2016
-	@version	1.0 
-*/
+ * CUNY Queens College - CS211 | CardGame
+ * Name: Card.h
+ * Purpose: Creates a card object that holds a rank, suit, and value
+ *
+ * @author Sean Rodriguez <sean.rodriguez@gmail.com>
+ * @copyright Sean Rodriguez October 21, 2016
+ * @version 1.0
+ */
 
 #ifndef CARD_H
 #define CARD_H

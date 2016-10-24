@@ -1,12 +1,12 @@
 /**
-	CUNY Queens College - CS211 | CardGame
-	Name:		Deck.h
-	Purpose:	Creates a stack of Card* to represent a deck
-
-	@author		Sean Rodriguez <sean.rodriguez@gmail.com>
-	@copyright	Sean Rodriguez October 21, 2016
-	@version	1.0 
-*/
+ * CUNY Queens College - CS211 | CardGame
+ * Name: Deck.h
+ * Purpose: Creates a stack of Card* to represent a deck
+ *
+ * @author Sean Rodriguez <sean.rodriguez@gmail.com>
+ * @copyright Sean Rodriguez October 21, 2016
+ * @version 1.0
+ */
 
 #ifndef DECK_H
 #define DECK_H
