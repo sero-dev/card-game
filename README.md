@@ -6,4 +6,4 @@ Follow me on [Twitter](https://twitter.com/sean_designs) and [Instagram](https:/
 
 ### Things to Do
 - Finish implementation file for LinkedList class
-- Debug add(Node, int) method inside LinkedList.cpp
+- Debug `add(Node, int)` method inside LinkedList.cpp
