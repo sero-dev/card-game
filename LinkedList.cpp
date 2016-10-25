@@ -24,7 +24,7 @@ LinkedList::LinkedList() {
  * @param Node that is being added to the list
  */
 void LinkedList::add(Node n) {
-	n.setNext(*head);
+	n.next = *head;
 	head = &n;
 	
 	size++;
@@ -38,12 +38,12 @@ void LinkedList::add(Node n) {
  */
 void LinkedList::add(Node n, int index) {
 	if (index == 0) {
-		n.setNext(*head);
+		n.next = *head;
 		head = &n; 			
 	} else {
 		itr = get(index - 1);
-		n.setNext(itr->getNext());
-		itr.setNext(n);
+		n.next = itr->getNext();
+		itr->next = &n;
 	}
 	
 	size++;	
@@ -85,7 +85,7 @@ void LinkedList::add(Node n, int index) {
  */
 void LinkedList::remove(int index) {
 	itr = get(index - 1);
-	itr->setNext(itr->getNext().getNext());
+	itr->next = itr->next->next;
 	
 	size--;
 }
@@ -100,7 +100,7 @@ void LinkedList::remove(int index) {
 Node LinkedList::get(int index) {
 	itr = head;
 	for (int i = 1; i <= index; i++)
-		itr = &(itr->getNext());
+		itr = itr->next;
 
 	return *itr;
 }
