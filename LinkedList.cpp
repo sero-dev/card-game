@@ -42,7 +42,7 @@ void LinkedList::add(Node n, int index) {
 		head = &n; 			
 	} else {
 		itr = get(index - 1);
-		n.next = itr->getNext();
+		n.next = itr->next;
 		itr->next = &n;
 	}
 	
