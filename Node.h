@@ -13,18 +13,19 @@
 
 class Node {
 private:
-	Node* previous;		// Node before 'this' Node
+	//Node* previous;		// Node before 'this' Node
 	Node* next;			// Node after 'this' Node
 	int data;			// Data inside 'this' Node
 
 public:
 	Node(int);			// @param Data being set inside 'this' Node
 
-	void setPrevious(Node&);	// Set the Node before 'this' Node
+	// void setPrevious(Node&);	// Set the Node before 'this' Node
+	// Node getPrevious();		// Get the Node before 'this' Node
+	
 	void setNext(Node&);		// Set the Node after 'this' Node
-	Node getPrevious();			// Get the Node before 'this' Node
-	Node getNext();				// Get the Node after 'this' Node
-	int getData();				// Get the data inside the Node
+	Node getNext();			// Get the Node after 'this' Node
+	int getData();			// Get the data inside the Node
 };
 
 #endif
