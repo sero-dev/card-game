@@ -26,6 +26,7 @@ LinkedList::LinkedList() {
 void LinkedList::add(Node n) {
 	n.setNext(*head);
 	head = &n;
+	
 	size++;
 }
 
@@ -40,7 +41,7 @@ void LinkedList::add(Node n, int index) {
 		n.setNext(*head);
 		head = &n; 			
 	} else {
-		itr->get(i - 1);
+		itr = get(index - 1);
 		n.setNext(itr->getNext());
 		itr.setNext(n);
 	}
@@ -77,8 +78,16 @@ void LinkedList::add(Node n, int index) {
 	//itr->setPrevious(n);
 }
 
+/**
+ * Removes the Node from  a specific index
+ * 
+ * @param Index where Node is to be removed from
+ */
 void LinkedList::remove(int index) {
-
+	itr = get(index - 1);
+	itr->setNext(itr->getNext().getNext());
+	
+	size--;
 }
 
 
