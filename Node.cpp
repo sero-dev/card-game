@@ -24,7 +24,7 @@ Node::Node(int data) {
  *
  * @param Node that is being connected to 'this' Node
  */
-void Node::setNext(Node& n) { next = &n; }
+//void Node::setNext(Node& n) { next = &n; }
 // void Node::setPrevious(Node& n) { previous = &n; }
 
 /**
@@ -32,7 +32,7 @@ void Node::setNext(Node& n) { next = &n; }
  *
  * @return Node that is connected to 'this' Node
  */
-Node Node::getNext() { return *next; }
+// Node Node::getNext() { return *next; }
 // Node Node::getPrevious() { return *previous; }
 
 /**
