@@ -5,5 +5,4 @@ Card Game is a program that was develop to mimic a 'real-life' standard card dec
 Follow me on [Twitter](https://twitter.com/sean_designs) and [Instagram](https://instagram.com/sean.designs), to message me for more information.
 
 ### Things to Do
-- Finish implementation file for `LinkedList` class
-- Debug `add(Node, int)` method inside `LinkedList.cpp`
+- Test all `LinkedList` methods to ensure all are working properly
