@@ -10,11 +10,25 @@
 
 #include <iostream>
 #include "Deck.h"
+#include "LinkedList.h"
 
 using namespace std;
 
 int main() {
-	Deck deck;
+	Node a(9);
+	Node b(8);
+	Node c(7);
+	Node d(6);
+	Node e(5);
+
+	LinkedList ls;
+
+	ls.add(a);
+	ls.add(b);
+	ls.add(d);
+	ls.add(e);
+
+	ls.display();
 
 	return 0;
 }

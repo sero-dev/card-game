@@ -15,10 +15,10 @@
 using namespace std;
 
 // Default Constructor
-Stack::Stack(int cap)
+Stack::Stack(int capacity)
 {
-	capacity = cap;
-	stack = new Card*[capacity];
+	this->capacity = capacity;
+	stack = new Card*[this->capacity];
 	size = 0;
 }
 
