@@ -20,13 +20,13 @@ private:
 	Card** stack;		// Points to Card* array
 	int size;			// Number of items in array
 	int capacity;		// Max capacity of array
+	
+	bool isFull();		// Checks if array is full
+	bool isEmpty();		// Checks if array is empty
 
 public:
 	Stack(int);			// Takes in the capacity for the array
 	~Stack();			// Destroys all dynamic variables
-
-	bool isFull();		// Checks if array is full
-	bool isEmpty();		// Checks if array is empty
 
 	Stack* push(Card*);		// Pushs Card* at the end
 	Card* pop();			// Removes Card* at the end

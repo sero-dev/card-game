@@ -25,11 +25,6 @@ Deck::Deck() {
 
 // De-Constructor: Destroys all dynamic variables
 Deck::~Deck() {
-	while (!deck->isEmpty()) {
-		Card* temp = deck->pop();
-		delete temp;
-	}
-
 	delete deck;
 }
 

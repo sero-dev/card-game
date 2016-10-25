@@ -21,9 +21,11 @@ private:
 public:
 	Deck();						// Default Constructor
 	~Deck();					// Destroys all dymanic variables
+	
 	Deck* shuffle();			// Shuffles deck
 	Card* deal();				// Deals the top card of the deck
 	Deck* placeBack(Card*);		// Places a card at the top of the deck
+	
 	void display();				// Displays the deck from top to bottom
 };
 

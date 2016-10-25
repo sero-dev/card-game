@@ -56,11 +56,7 @@ Card* Stack::pop() {
 		exit(-1);
 	}
 
-	Card* temp = stack[size - 1];
-	stack[size - 1] = nullptr;
-	size--;
-
-	return temp;
+	return stack[--size];
 }
 
 
@@ -74,6 +70,7 @@ Card* Stack::peep() {
 		cout << "Error: Stack is empty." << endl;
 		exit(-1);
 	}
+
 	return stack[size - 1];
 }
 
