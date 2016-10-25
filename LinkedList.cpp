@@ -19,28 +19,26 @@ LinkedList::LinkedList() {
 }
 
 /**
- * Adds a Node to the end of the list
+ * Adds a Node to the front of the list
  * 
- * @param Node that is being add to the list
+ * @param Node that is being added to the list
  */
 void LinkedList::add(Node n) {
-	if (size == 0) head = &n;
-	else {
-		n.setPrevious(*tail);
-		tail->setNext(n);
-	}
-
-	tail = &n;
+	n.setNext(*head);
+	head = &n;
 	size++;
 }
 
 /**
  * Adds a Node to a specific index of the list
-
+ *
  * @param Node that is being added to the list
  * @param Index at which the Node is being added at
  */
 void LinkedList::add(Node n, int index) {
+	
+	
+	// OLD CODE
 	/*if (index == 0) {
 		n.setNext(*head);
 		head->setPrevious(n);
@@ -74,6 +72,13 @@ void LinkedList::remove(int index) {
 
 }
 
+
+/**
+ * Gets the Node at a specific index
+ *
+ * @param Index at which, to get the Node from
+ * @return Node that is at the index parameter
+ */
 Node LinkedList::get(int index) {
 	itr = head;
 	for (int i = 1; i <= index; i++)
@@ -82,6 +87,8 @@ Node LinkedList::get(int index) {
 	return *itr;
 }
 
+
+// Displays all the Node data on one line in the console
 void LinkedList::display() {
 	for (int i = 0; i < size; i++) {
 		cout << get(i).getData() << " ";
