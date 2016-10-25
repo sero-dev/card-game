@@ -17,7 +17,7 @@ class LinkedList {
 private:
 	int size;			// Keeps track of size for the list
 	Node* head;			// Points to the first Node in the list
-	Node* tail;			// Points to the last Node in the list
+	// Node* tail;			// Points to the last Node in the list
 	Node* itr;			// Points to the 'current' Node in the list
 
 public:
