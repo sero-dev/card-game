@@ -1,12 +1,12 @@
 /**
-* CUNY Queens College - CS211 | CardGame
-* Name: LinkedList.cpp
-* Purpose: Creates dynamic data structure that is Node-Base
-*
-* @author Sean Rodriguez <sean.rodriguez@gmail.com>
-* @copyright Sean Rodriguez October 24, 2016
-* @version 1.0
-*/
+ * CUNY Queens College - CS211 | CardGame
+ * Name: LinkedList.cpp
+ * Purpose: Creates dynamic data structure that is Node-Base
+ *
+ * @author Sean Rodriguez <sean.rodriguez@gmail.com>
+ * @copyright Sean Rodriguez October 24, 2016
+ * @version 1.0
+ */
 
 #include <iostream>
 #include "LinkedList.h"
@@ -36,7 +36,16 @@ void LinkedList::add(Node n) {
  * @param Index at which the Node is being added at
  */
 void LinkedList::add(Node n, int index) {
+	if (index == 0) {
+		n.setNext(*head);
+		head = &n; 			
+	} else {
+		itr->get(i - 1);
+		n.setNext(itr->getNext());
+		itr.setNext(n);
+	}
 	
+	size++;	
 	
 	// OLD CODE
 	/*if (index == 0) {
