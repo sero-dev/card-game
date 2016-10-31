@@ -26,7 +26,7 @@ public:
 	Card* deal();				// Deals the top card of the deck
 	Deck* placeBack(Card*);		// Places a card at the top of the deck
 	
-	void display();				// Displays the deck from top to bottom
+	void display() const;		// Displays the deck from top to bottom
 };
 
 #endif

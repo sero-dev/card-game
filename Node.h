@@ -11,16 +11,18 @@
 #ifndef NODE_H
 #define NODE_H
 
+#include "Card.h"
+
 class Node {
 	
 	friend class LinkedList;	// Allows use of Node private variables for LinkedList class
 
 private:
-	int data;		// Data inside Node
+	Card* card;		// Data inside Node
 	Node* next;		// Pointer to next Node
 
 public:
-	Node(int);		// Initializes data object
+	Node(Card*);	// Initializes data object
 };
 
 #endif

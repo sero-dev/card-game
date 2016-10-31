@@ -16,17 +16,25 @@
 class LinkedList {
 
 private:
-	int size;			// Holds the size of the list
-	Node* head;			// Points to the beginning of the list
-	Node* get(int);		// Gets the node at specified index
+	int size;				// Holds the size of the list
+	Node* head;				// Points to the beginning of the list
+	Node* get(int) const;	// Gets the node at specified index
 
 public:
 	LinkedList();
 	~LinkedList();
 	
-	void add(int);		// Adds a node to the beginning of the list
-	void remove();		// Removes the node in the beginning of the list
-	void remove(int);	// Removes a node from a specified index
+	void add(Card*);	// Adds a node to the beginning of the list
+	Card* remove();		// Removes the node in the beginning of the list
+	Card* remove(int);	// Removes a node from a specified index
+
+	int addAll() const;		// Adds value of all cards inside the list
+	
+	// Operator Overloads
+	bool operator>(const LinkedList&) const;
+	bool operator<(const LinkedList&) const;
+	bool operator==(const LinkedList&) const;
+	bool operator!=(const LinkedList&) const;
 
 	void display();		// Displays the whole list from front to back
 };

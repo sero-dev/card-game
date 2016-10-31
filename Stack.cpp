@@ -12,36 +12,39 @@
 #include "Stack.h"
 #include "Card.h"
 
-using namespace std;
-
-// Default Constructor
-Stack::Stack(int capacity)
-{
-	this->capacity = capacity;
-	stack = new Card*[this->capacity];
-	size = 0;
+/**
+ * Initializes all member variables
+ *
+ * @param size of the data structure
+ */
+Stack::Stack(int capacity) {
+	this->capacity = capacity;				// Set the capacity
+	stack = new Card*[this->capacity];		// Create an array of Card* with a size of 'capacity' 
+	size = 0;								// Set size to 0
 }
 
-// Deconstructor: Destroys all dynamic variables
+/** 
+ * Destroys all dynamic variables
+ */
 Stack::~Stack() {
-	delete[] stack;
+	delete[] stack;							// Deletes dynamic array
 }
 
 
 /**
-	Pushes Card* to the end of the array
-	
-	@param a object of type Card* to insert at the end of the array
-	@return a pointer pointing to this Stack
-*/
+ * Pushes Card* to the end of the array
+ *	
+ * @param a object of type Card* to insert at the end of the array
+ * @return a pointer pointing to this Stack
+ */
 Stack* Stack::push(Card* c) {
-	if (isFull())
-		cout << "Error: Capacity full" << endl;
+	if (isFull())												// Checks if stack is full...
+		std::cout << "Error: Capacity full" << std::endl;		// ... displays error message
 	else {
-		stack[size++] = c;
+		stack[size++] = c;										// Add Card* to stack
 	}
 
-	return this;
+	return this;												// Return this Deck
 }
 
 
@@ -51,12 +54,12 @@ Stack* Stack::push(Card* c) {
 	@return the Card* that was popped out 
 */
 Card* Stack::pop() {
-	if (isEmpty()) {
-		cout << "Error: Stack is empty." << endl;
-		exit(-1);
+	if (isEmpty()) {											// Checks if stack is empty...
+		std::cout << "Error: Stack is empty." << std::endl;		// ... displays error message... 
+		exit(-1);												// ... exits program
 	}
 
-	return stack[--size];
+	return stack[--size];										// Decreases size by 1, return the top index
 }
 
 
@@ -65,26 +68,39 @@ Card* Stack::pop() {
 
 	@return the Card* that was last added to the array
 */
-Card* Stack::peep() {
-	if (isEmpty()) {
-		cout << "Error: Stack is empty." << endl;
-		exit(-1);
+Card* Stack::peep() const {
+	if (isEmpty()) {											// Checks if stack is empty...
+		std::cout << "Error: Stack is empty." << std::endl;		// ... displays error message...
+		exit(-1);												// ... exits program
 	}
 
-	return stack[size - 1];
+	return stack[size - 1];										// Returns the top index
 }
 
-void Stack::display() {
-	if (isEmpty()) return;
+/**
+ * Displays structure from top to bottom
+ */
+void Stack::display() const {
+	if (isEmpty()) return;	// Returns nothing if it is empty
 
-	for (int i = size - 1; i >= 0; i--)
-		stack[i]->display();
+	for (int i = size - 1; i >= 0; i--)		// For every index...
+		stack[i]->display();				// ... display its information
 }
 
-bool Stack::isEmpty() {
+/**
+ * Checks if stack is empty
+ *
+ *	@return if it is empty or not
+ */
+bool Stack::isEmpty() const {
 	return size == 0;
 }
 
-bool Stack::isFull() {
+/**
+ * Checks if stack is full
+ *
+ * @return if it is full or not
+ */
+bool Stack::isFull() const {
 	return size == capacity;
 }

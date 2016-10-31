@@ -11,16 +11,13 @@
 #ifndef CARD_H
 #define CARD_H
 
-#include <iostream>
 #include <string>
-
-using namespace std;
 
 class Card {
 
 private:
-	static string rankAsStr[13];	// = { "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10" "Jack", "Queen", "King" };
-	static string suitAsStr[4];		// = { "Spade", "Heart", "Club", "Diamond" };
+	static std::string rankAsStr[13];	// = { "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10" "Jack", "Queen", "King" };
+	static std::string suitAsStr[4];		// = { "Spade", "Heart", "Club", "Diamond" };
 	
 	int rank;
 	int suit;
@@ -28,8 +25,8 @@ private:
 
 public:
 	Card();					// Default Constructor
-	Card(int,int);			// Constructor defaults value
-	Card(int,int,int);		// Constructor sets all variables
+	Card(int,int);			// Initializes rank and suit 
+	Card(int,int,int);		// Initializes rank, suit and value
 	
 	// Mutator Functions
 	void setRank(int);
@@ -37,24 +34,24 @@ public:
 	void setValue(int);
 	
 	// Accessor Functions
-	int getRank();
-	int getSuit();
-	int getValue();
+	int getRank() const;
+	int getSuit() const;
+	int getValue() const;
 	
 	
-	int operator+(const Card&);		// Adds values together
-	int operator-(const Card&);		// Finds the difference between the values
+	int operator+(const Card&) const;		// Adds values together
+	int operator-(const Card&) const;		// Finds the difference between the values
 
-	bool operator>(const Card&);	// Checks if value is greater than
-	bool operator<(const Card&);	// Checks if value is less than
-	bool operator>=(const Card&);	// Checks if values are greater or equal to 
-	bool operator<=(const Card&);	// Checks if values are less or equal to
-	bool operator==(const Card&);	// Checks if values are the same
-	bool operator!=(const Card&);	// Checks if values are NOT the same
-	bool operator^(const Card&);	// Checks for same suit
+	bool operator>(const Card&) const;		// Checks if value is greater than
+	bool operator<(const Card&) const;		// Checks if value is less than
+	bool operator>=(const Card&) const;		// Checks if values are greater or equal to 
+	bool operator<=(const Card&) const;		// Checks if values are less or equal to
+	bool operator==(const Card&) const;		// Checks if values are the same
+	bool operator!=(const Card&) const;		// Checks if values are NOT the same
+	bool operator^(const Card&) const;		// Checks for same suit
 
-	string toString();		// Returns Card information
-	void display();			// Displays Card information
+	std::string toString() const;		// Returns Card information
+	void display() const;				// Displays Card information
 };
 
 

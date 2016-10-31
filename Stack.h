@@ -21,18 +21,18 @@ private:
 	int size;			// Number of items in array
 	int capacity;		// Max capacity of array
 	
-	bool isFull();		// Checks if array is full
-	bool isEmpty();		// Checks if array is empty
+	bool isFull() const;		// Checks if array is full
+	bool isEmpty() const;		// Checks if array is empty
 
 public:
-	Stack(int);			// Takes in the capacity for the array
+	Stack(int);			// Initializes all member variables
 	~Stack();			// Destroys all dynamic variables
 
 	Stack* push(Card*);		// Pushs Card* at the end
 	Card* pop();			// Removes Card* at the end
-	Card* peep();			// Views Card* at the end
+	Card* peep() const;		// Views Card* at the end
 
-	void display();		// Displays Stack from Top to Bottom
+	void display() const;		// Displays Stack from Top to Bottom
 };
 
 #endif

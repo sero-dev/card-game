@@ -13,8 +13,8 @@
 /**
  * Initializes the data variable
  *
- * @param value for data variable
+ * @param for Card to point to
  */
-Node::Node(int data) {
-	this->data = data;
+Node::Node(Card* card) {
+	this->card = card;
 }
