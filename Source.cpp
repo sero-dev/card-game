@@ -10,30 +10,30 @@
 
 #include <iostream>
 #include "Deck.h"
-#include "LinkedList.h"
+#include "Player.h"
 
 using namespace std;
 
 int main() {
 	Deck deck;
-	LinkedList hand1;
-	LinkedList hand2;
+	Player player1("Sean", 500.00);
+	Player player2("Juhi", 1000.00);
 
 	deck.shuffle();
 
-	hand1.add(deck.deal());
-	hand2.add(deck.deal());
-	hand1.add(deck.deal());
-	hand2.add(deck.deal());
+	player1.hit(deck.deal());
+	player1.hit(deck.deal());
+	player2.hit(deck.deal());
+	player2.hit(deck.deal());
 
 	cout << "Player 1 Hand" << endl;
-	hand1.display();
+	player1.displayHand();
 
 	cout << "Player 2 Hand" << endl;
-	hand2.display();
+	player2.displayHand();
 
 	cout << "Player ";
-	if (hand1 > hand2) cout << "1 Wins!";
+	if (player1 > player2) cout << "1 Wins!";
 	else cout << "2 Wins!";
 	cout << endl;
 

@@ -4,7 +4,7 @@
  * Purpose: Creates dynamic data structure that is Node-Base
  *
  * @author Sean Rodriguez <sean.rodriguez@gmail.com>
- * @copyright Sean Rodriguez October 24, 2016
+ * @copyright Sean Rodriguez October 31, 2016
  * @version 1.0
  */
 

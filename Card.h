@@ -17,7 +17,7 @@ class Card {
 
 private:
 	static std::string rankAsStr[13];	// = { "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10" "Jack", "Queen", "King" };
-	static std::string suitAsStr[4];		// = { "Spade", "Heart", "Club", "Diamond" };
+	static std::string suitAsStr[4];	// = { "Spade", "Heart", "Club", "Diamond" };
 	
 	int rank;
 	int suit;

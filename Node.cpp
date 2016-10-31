@@ -4,7 +4,7 @@
  * Purpose: Creates a node for a LinkedList 
  *
  * @author Sean Rodriguez <sean.rodriguez@gmail.com>
- * @copyright Sean Rodriguez October 24, 2016
+ * @copyright Sean Rodriguez October 31, 2016
  * @version 1.0
  */
 
