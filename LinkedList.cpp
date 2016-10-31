@@ -13,105 +13,96 @@
 
 using namespace std;
 
-// Default Constructor
+/**
+ * Initializes the size and head variables
+ */
 LinkedList::LinkedList() {
-	size = 0;
+	size = 0;	// Sets size to 0
+	head = 0;	// Points head to nothing
 }
 
 /**
- * Adds a Node to the front of the list
- * 
- * @param Node that is being added to the list
+ * Deletes the whole list
  */
-void LinkedList::add(Node n) {
-	n.next = *head;
-	head = &n;
-	
-	size++;
+LinkedList::~LinkedList() {
+	while (size != 0)
+		remove();
 }
 
 /**
- * Adds a Node to a specific index of the list
+ * Adds a node to the beginning of the list
  *
- * @param Node that is being added to the list
- * @param Index at which the Node is being added at
+ * @param value of data in the Node to be added
  */
-void LinkedList::add(Node n, int index) {
-	if (index == 0) {
-		n.next = *head;
-		head = &n; 			
-	} else {
-		itr = get(index - 1);
-		n.next = itr->next;
-		itr->next = &n;
-	}
-	
-	size++;	
-	
-	// OLD CODE
-	/*if (index == 0) {
-		n.setNext(*head);
-		head->setPrevious(n);
-		head = &n;
+void LinkedList::add(int n) {
+	Node* number = new Node(n);		// Creates a new node object
+
+	if (head != 0) {				// If head points to something...
+		number->next = head;		// ... set the new node's next to whatever head points to
 	}
 
-	else if (index == size) {
-		n.setPrevious(*tail);
-		tail->setNext(n);
-		tail = &n;
-	}
-
-	else {
-		itr = head;
-		for (int i = 1; i <= index; i++)
-			itr = &(itr->getNext());
-
-		
-	}*/
-
-	//itr = &get(index);
-	//itr->getPrevious().setNext(n);
-	//cout << itr->getPrevious().getNext().getData() << endl;
-
-	//n.setPrevious(itr->getPrevious());
-	//n.setNext(*itr);
-	//itr->setPrevious(n);
+	head = number;					// Point the head to the new node
+	size++;							// Increase the size by one
 }
 
 /**
- * Removes the Node from  a specific index
- * 
- * @param Index where Node is to be removed from
+ * Removes the node in the beginning of the list
+ */
+void LinkedList::remove() {
+	if (size == 0) return;		// If there is nothing in the list, return
+
+	Node* deleteNode = head;	// To delete dynamic variable
+	head = head->next;			// Set the head to next
+
+	delete deleteNode;			// Deletes dynamic variable
+	size--;						// Decrease the size by 1
+}
+
+/**
+ * Removes a node from a specified index
+ *
+ * @param index where Node is stored
  */
 void LinkedList::remove(int index) {
-	itr = get(index - 1);
-	itr->next = itr->next->next;
-	
-	size--;
-}
+	if (index > size - 1) index = size - 1;		// Catches upper-bound violations
+	if (index < 0) index = 0;					// Catches lower-bound violations
 
+	if (index == 0) remove();					// If index = 0, call remove function
+	else {										// Else...
+		Node* deleteNode = get(index);			// Create pointer to Node index
+		Node* itr = get(index - 1);			// Create pointer before index
+		itr->next = itr->next->next;			// Set before pointer's next to a Node, two indices ahead
+		
+		delete deleteNode;						// Delete dynamic Node
+		size--;									// Decrease size by 1
+	}
+}
 
 /**
- * Gets the Node at a specific index
+ * Gets the node at specified index
  *
- * @param Index at which, to get the Node from
- * @return Node that is at the index parameter
+ * @param index where Node is stored
+ * @return the Node request from the parameter
  */
-Node LinkedList::get(int index) {
-	itr = head;
-	for (int i = 1; i <= index; i++)
-		itr = itr->next;
+Node* LinkedList::get(int index) {
+	if (index > size - 1) index = size - 1;		// Catches upper-bound violations
+	if (index < 0) index = 0;					// Catches lower-bound violations
 
-	return *itr;
+	Node* itr = head;							// Set iterator to the head of the list
+	for (int i = 1; i <= index; i++)			// Iterator 'index' times if index is not 0
+		itr = itr->next;						// Move iterator one up in the list
+
+	return itr;								// Return the iterator
 }
 
-
-// Displays all the Node data on one line in the console
+/**
+ * Displays the whole list from front to back
+ */
 void LinkedList::display() {
-	for (int i = 0; i < size; i++) {
-		cout << get(i).getData() << " ";
-	}
+	if (size == 0) return;					// If size = 0, return
 
-	cout << endl;
+	for (int i = 0; i < size; i++)			// For each index...
+		std::cout << get(i)->data << " ";	// ... print out its data followed by a space
+	std::cout << std::endl;					// End the line afterwards
 }
 

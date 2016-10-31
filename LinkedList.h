@@ -1,12 +1,12 @@
 /**
-* CUNY Queens College - CS211 | CardGame
-* Name: LinkedList.h
-* Purpose: Creates dynamic data structure that is Node-Base
-*
-* @author Sean Rodriguez <sean.rodriguez@gmail.com>
-* @copyright Sean Rodriguez October 24, 2016
-* @version 1.0
-*/
+ * CUNY Queens College - CS211 | CardGame
+ * Name: LinkedList.h
+ * Purpose: Creates dynamic data structure that is Node-Base
+ *
+ * @author Sean Rodriguez <sean.rodriguez@gmail.com>
+ * @copyright Sean Rodriguez October 31, 2016
+ * @version 1.0
+ */
 
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
@@ -14,22 +14,21 @@
 #include "Node.h"
 
 class LinkedList {
+
 private:
-	int size;			// Keeps track of size for the list
-	Node* head;			// Points to the first Node in the list
-	// Node* tail;			// Points to the last Node in the list
-	Node* itr;			// Points to the 'current' Node in the list
+	int size;			// Holds the size of the list
+	Node* head;			// Points to the beginning of the list
+	Node* get(int);		// Gets the node at specified index
 
 public:
-	LinkedList();			// Default Constructor
+	LinkedList();
+	~LinkedList();
+	
+	void add(int);		// Adds a node to the beginning of the list
+	void remove();		// Removes the node in the beginning of the list
+	void remove(int);	// Removes a node from a specified index
 
-	void add(Node);			// Adds Node to the end
-	void add(Node, int);	// Adds Node to a specific index
-	void remove(int);		// Removes Node at a specific index
-
-	Node get(int);			// Get the Node at a specific index
-
-	void display();			// Prints list in the console
+	void display();		// Displays the whole list from front to back
 };
 
 #endif

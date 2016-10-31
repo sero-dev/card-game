@@ -15,18 +15,13 @@
 using namespace std;
 
 int main() {
-	Node a(9);
-	Node b(8);
-	Node c(7);
-	Node d(6);
-	Node e(5);
-
 	LinkedList ls;
 
-	ls.add(a);
-	ls.add(b);
-	ls.add(d);
-	ls.add(e);
+	ls.add(3);
+	ls.add(2);
+	ls.add(1);
+
+	ls.remove();
 
 	ls.display();
 
