@@ -5,4 +5,5 @@ Card Game is a program that was develop to mimic a 'real-life' standard card dec
 Follow me on [Twitter](https://twitter.com/sero_dev) and [Instagram](https://instagram.com/sero_dev), to message me for more information.
 
 ### Things to Do
-- Nothing at the moment
+- Finish coding the implementation for Player.cpp
+- Complete documentation of all methods in Player.h and Player.cpp
