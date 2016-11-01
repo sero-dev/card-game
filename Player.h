@@ -16,21 +16,22 @@
 
 class Player {
 private:
-	std::string name;
-	double cash;
-	LinkedList hand;
+	std::string name;	// Player's name
+	double cash;		// Player's cash
+	LinkedList hand;	// Player's hand
 
 public:
-	Player(std::string, double);
+	Player(std::string, double);	// Initializes name and cash
 	
-	std::string getName();
-	double getCash();
+	std::string getName();			// Gets player's name
+	double getCash();				// Gets player's cash
 
-	void hit(Card*);
-	Card* removeCard(int);
+	void hit(Card*);				// Puts one card in player's hand
+	Card* removeCard(int);			// Removes one specified card from player's hand
 	
-	void displayHand();
+	void displayHand();				// Displays player's hand
 	
+	// Operator Overloading, compares total value of player's hand
 	bool operator>(const Player&) const;
 	bool operator<(const Player&) const;
 	bool operator==(const Player&) const;
