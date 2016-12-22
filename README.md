@@ -7,3 +7,4 @@ Follow me on [Twitter](https://twitter.com/sero_dev) and [Instagram](https://ins
 ### Things to Do
 - Finish coding the implementation for Player.cpp
 - Create Blackjack class, and update Source.cpp to be the driver
+- Create a Hand class for Player's Hand
