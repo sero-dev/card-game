@@ -1,124 +1,165 @@
 /**
  * CUNY Queens College - CS211 | CardGame
  * Name: LinkedList.cpp
- * Purpose: Creates dynamic data structure that is Node-Base
+ * Purpose: Implements a data structure based on a naive LinkedList
  *
  * @author Sean Rodriguez <sean.rodriguez@gmail.com>
- * @copyright Sean Rodriguez October 31, 2016
+ * @copyright Sean Rodriguez December 21, 2016
  * @version 1.0
+ *
  */
 
-#include <iostream>
 #include "LinkedList.h"
 
-/**
- * Initializes the size and head variables
- */
-LinkedList::LinkedList() {
-	size = 0;	// Sets size to 0
-	head = 0;	// Points head to nothing
+LinkedList::LinkedList() :
+	head(NULL),
+	tail(head),
+	size(0)
+{}
+
+Card* LinkedList::getHead() {
+	return head->getData();
 }
 
-/**
- * Deletes the whole list
- */
-LinkedList::~LinkedList() {
-	while (size != 0) {
-		delete get(size - 1);
-		size--;
-	}
+Card* LinkedList::getTail() {
+	return tail->getData();
 }
 
-/**
- * Adds a node to the beginning of the list
- *
- * @param value of data in the Node to be added
- */
-void LinkedList::add(Card* card) {
-	Node* number = new Node(card);		// Creates a new node object
+Card* LinkedList::getAtIndex(int index) {
+	if (index >= size) return tail->getData();
 
-	if (head != 0) {				// If head points to something...
-		number->next = head;		// ... set the new node's next to whatever head points to
+	Node* current = head;
+	for (int i = 0; i < index; i++) {
+		current = current->getNext();
 	}
 
-	head = number;					// Point the head to the new node
-	size++;							// Increase the size by one
+	return current->getData();
 }
 
-int LinkedList::addAll() const{
-	int sum = 0;
+int LinkedList::getSize() const { return size; }
 
-	for (int i = 0; i < size; i++)
-		sum += get(i)->card->getValue();
-
-	return sum;
-}
-
-/**
- * Removes the node in the beginning of the list
- */
-Card* LinkedList::remove() {
-	if (size == 0) return NULL;		// If there is nothing in the list, return
-
-	Node* temp = head;				// To delete dynamic variable
-	head = head->next;				// Set the head to next
-
-	size--;							// Decrease the size by 1
-	return temp->card;				// Return removed Node
-}
-
-/**
- * Removes a node from a specified index
- *
- * @param index where Node is stored
- */
-Card* LinkedList::remove(int index) {
-	if (index > size - 1) index = size - 1;		// Catches upper-bound violations
-	if (index < 0) index = 0;					// Catches lower-bound violations
-
-	if (index == 0) remove();					// If index = 0, call remove function
-	else {										// Else...
-		Node* temp = get(index);				// Create pointer to Node index
-		Node* itr = get(index - 1);				// Create pointer before index
-		itr->next = itr->next->next;			// Set before pointer's next to a Node, two indices ahead
-		
-		size--;									// Decrease size by 1
-		return temp->card;						// Return removed Node
+void LinkedList::insertAtIndex(Card* card, int index) {
+	Node* inserted = new Node(card);
+	
+	if (isEmpty()) {
+		head = inserted;
+		tail = inserted;
 	}
+	else if (index == 0) insertAtHead(card);
+	else if (index > size - 1) insertAtTail(card);
+	else {
+		Node* current = head;
+		for (int i = 0; i < index - 1; i++) {
+			current = current->getNext();
+		}
+
+		inserted->setNext(current->getNext());
+		current->setNext(inserted);
+	}
+
+	size++;
 }
 
-/**
- * Gets the node at specified index
- *
- * @param index where Node is stored
- * @return the Node request from the parameter
- */
-Node* LinkedList::get(int index) const{
-	if (index > size - 1) index = size - 1;		// Catches upper-bound violations
-	if (index < 0) index = 0;					// Catches lower-bound violations
+Card* LinkedList::removeAtIndex(int index) {
+	Card* removed;
 
-	Node* itr = head;							// Set iterator to the head of the list
-	for (int i = 1; i <= index; i++)			// Iterator 'index' times if index is not 0
-		itr = itr->next;						// Move iterator one up in the list
+	if (isEmpty() || index < 0 || index > size - 1) return NULL;
+	else if (index == 0) removed = removeAtHead();
+	else if (index == size - 1) removed = removeAtTail();
+	else {
+		Node* current = head;
+		for (int i = 0; i < index - 1; i++) {
+			current = current->getNext();
+		}
 
-	return itr;									// Return the iterator
+		removed = current->getNext()->getData();
+		current->setNext(current->getNext()->getNext());
+	}
+
+	size--;
+	return removed;
 }
 
-/**
- * Displays the whole list from front to back
- */
-void LinkedList::display() {
-	if (size == 0) return;							// If size = 0, return
-
-	for (int i = 0; i < size; i++)					// For each index...
-		std::cout << get(i)->card->toString()		// ... print out its data
-		<< std::endl;		
-	std::cout << std::endl;							// End the line afterwards
+Card* LinkedList::remove(Card* card) {
+	return removeAtIndex(search(card));
 }
 
-// Operator Overloads
-bool LinkedList::operator>(const LinkedList& rhs) const { return addAll() > rhs.addAll(); }
-bool LinkedList::operator<(const LinkedList& rhs) const { return addAll() < rhs.addAll(); }
-bool LinkedList::operator==(const LinkedList& rhs) const { return addAll() == rhs.addAll(); }
-bool LinkedList::operator!=(const LinkedList& rhs) const { return addAll() != rhs.addAll(); }
+bool LinkedList::contains(Card* card) {
+	return (search(card) >= 0);
+}
 
+int LinkedList::search(Card* data) {
+	int index = 0;
+	Node* current = head;
+
+	while (current->getNext() != NULL) {
+		if (current->getData() == data) {
+			return index;
+		}
+		current = current->getNext();
+		index++;
+	}
+
+	return -1;
+}
+
+void LinkedList::insertAtHead(Card* data) {
+	Node* temp = new Node(data);
+	if(head != NULL) temp->setNext(head);
+	head = temp;
+}
+
+void LinkedList::insertAtTail(Card* data) {
+	Node* inserted = new Node(data);
+	if (tail != NULL) tail->setNext(inserted);
+	tail = inserted;
+}
+
+Card* LinkedList::removeAtHead() {
+	if (isEmpty()) return NULL;
+
+	Node* removed = head;
+	head = head->getNext();
+
+	return removed->getData();
+}
+
+Card* LinkedList::removeAtTail() {
+	if (isEmpty()) return NULL;
+
+	Node* current = head;
+	for (int i = 0; i < size - 2; i++) {
+		current = current->getNext();
+	}
+
+	Node* removed = tail;
+	current->setNext(NULL);
+	tail = current;
+
+	return removed->getData();
+}
+
+bool LinkedList::isEmpty() const {
+	return (size == 0);
+}
+
+const Card& LinkedList::operator[](int index) {
+	Node* current = head;
+		 
+	for (int i = 0; i < index; i++) {
+		current = current->getNext();
+	}
+
+	return *current->getData();
+}
+
+std::ostream& operator<<(std::ostream& os, const LinkedList& list) {
+	LinkedList::Node* current = list.head;
+
+	for (int i = 0; i < list.size; i++) {
+		os << *current->getData() << std::endl;
+		current = current->getNext();
+	}
+
+	return os;
+}

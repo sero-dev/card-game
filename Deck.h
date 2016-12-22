@@ -11,22 +11,30 @@
 #ifndef DECK_H
 #define DECK_H
 
+#include "Card.h"
 #include "Stack.h"
 
+const int DEFAULT_DECK_SIZE = 52;
+
 class Deck {
+	friend std::ostream& operator<<(std::ostream&, const Deck&);
+
 private:	
-	Stack* deck;
+	Stack<Card*> * deck;
 	void swap(Card*, Card*);	// Swaps pointer locations
 	
 public:
 	Deck();						// Default Constructor
-	~Deck();					// Destroys all dymanic variables
+
+	~Deck();						// Destructor
+	Deck(const Deck&);				// Copy constructor
+	Deck operator=(const Deck&);	// Overloaded Assignment Operator
 	
 	Deck* shuffle();			// Shuffles deck
 	Card* deal();				// Deals the top card of the deck
 	Deck* placeBack(Card*);		// Places a card at the top of the deck
 	
-	void display() const;		// Displays the deck from top to bottom
+	Stack<Card*> getDeck() const;
 };
 
 #endif

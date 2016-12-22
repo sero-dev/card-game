@@ -11,28 +11,110 @@
 #ifndef STACK_H
 #define STACK_H
 
-#include <string>
-#include "Card.h"
+#include <iostream>
 
+template <class T>
 class Stack {
+	friend std::ostream& operator<<(std::ostream& os, const Stack& data) {
+	
+		for (int i = data.size - 1; i >= 0; i--)
+			os << *data.stack[i] << std::endl;
+
+		return os;
+	}
 
 private:
-	Card** stack;		// Points to Card* array
 	int size;			// Number of items in array
 	int capacity;		// Max capacity of array
+	T* stack;			// Points to data array
 	
 	bool isFull() const;		// Checks if array is full
 	bool isEmpty() const;		// Checks if array is empty
 
 public:
-	Stack(int);			// Initializes all member variables
-	~Stack();			// Destroys all dynamic variables
+	Stack(int capacity);			// Initializes all member variables
+	
+	~Stack();								// Destructor
+	Stack(const Stack& copy);				// Copy Constructor
+	Stack operator=(const Stack& copy);		// Assignment Operator
 
-	Stack* push(Card*);		// Pushs Card* at the end
-	Card* pop();			// Removes Card* at the end
-	Card* peep() const;		// Views Card* at the end
-
-	void display() const;		// Displays Stack from Top to Bottom
+	Stack push(T data);		// Pushs data at the end
+	T pop();					// Removes data at the end
+	T peep() const;				// Views data at the end
 };
+
+template <class T>
+Stack<T>::Stack(int capacity) : 
+	size(0),
+	capacity(capacity),
+	stack(new T[capacity])
+{}
+
+template <class T>
+Stack<T>::~Stack() {
+	delete[] stack;
+}
+
+template <class T>
+Stack<T>::Stack(const Stack& copy) :
+	size(copy.size),
+	capacity(copy.capacity),
+	stack(new T[capacity])
+{
+	for (int i = 0; i < size; i++) {
+		stack[i] = copy.stack[i];
+	}
+}
+
+template <class T>
+Stack<T> Stack<T>::operator=(const Stack& copy) {
+	size = copy.size;
+	capacity = copy.capacity;
+
+	delete[] stack;
+
+	stack = new T[capacity];
+	for (int i = 0; i < size; i++) {
+		stack[i] = copy.capacity[i];
+	}
+
+	return *this;
+}
+
+template <class T>
+Stack<T> Stack<T>::push(T data) {
+	if (isFull())												// Checks if stack is full...
+		std::cout << "Error: Capacity full" << std::endl;		// ... displays error message
+	else
+		stack[size++] = data;									// Add data to stack
+
+	return *this;												// Return this stack
+}
+
+template <class T>
+T Stack<T>::pop() {
+	if (isEmpty()) {											// Checks if stack is empty...
+		std::cout << "Error: Stack is empty." << std::endl;		// ... displays error message... 
+		exit(-1);												// ... exits program
+	}
+
+	return stack[--size];
+}
+
+template <class T>
+T Stack<T>::peep() const {
+	if (isEmpty()) {											// Checks if stack is empty...
+		std::cout << "Error: Stack is empty." << std::endl;		// ... displays error message...
+		exit(-1);												// ... exits program
+	}
+
+	return stack[size - 1];										// Returns the top index
+}
+
+template <class T>
+bool Stack<T>::isFull() const { return size == capacity; }  
+
+template <class T>
+bool Stack<T>::isEmpty() const { return size == 0; }
 
 #endif

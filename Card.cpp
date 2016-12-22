@@ -51,16 +51,16 @@ Card::Card(int r, int s, int v) {
 /**
  * Mutator Methods
  */
-void Card::setRank(int r) {rank = r;}
-void Card::setSuit(int s) {suit = s;}
-void Card::setValue(int v) {value = v;}
+void Card::setRank(int r) { rank = r; }
+void Card::setSuit(int s) { suit = s; }
+void Card::setValue(int v) { value = v; }
 
 /**
  * Accessor Methods
  */
-int Card::getRank() const {return rank;}
-int Card::getSuit() const {return suit;}
-int Card::getValue() const {return value;}
+std::string Card::getRank() const { return rankAsStr[rank]; }
+std::string Card::getSuit() const { return suitAsStr[suit]; }
+int Card::getValue() const { return value; }
 
 /**
  * Overloads operators to add/subtract the values
@@ -71,28 +71,20 @@ int Card::operator-(const Card& a) const {return (value < a.value) ? a.value - v
 /** 
  * Overloads operators to compare Cards' values
  */
-bool Card::operator<(const Card& a) const {return value < a.value;}
-bool Card::operator>(const Card& a) const {return value > a.value;}
-bool Card::operator==(const Card& a) const {return value == a.value;}
-bool Card::operator!=(const Card& a) const {return value != a.value;}
-bool Card::operator<=(const Card& a) const {return value <= a.value;}
-bool Card::operator>=(const Card& a) const {return value >= a.value;}
+bool Card::operator<(const Card& a) const { return value < a.value; }
+bool Card::operator>(const Card& a) const { return value > a.value; }
+bool Card::operator==(const Card& a) const { return value == a.value; }
+bool Card::operator!=(const Card& a) const { return value != a.value; }
+bool Card::operator<=(const Card& a) const { return value <= a.value; }
+bool Card::operator>=(const Card& a) const { return value >= a.value; }
 
-bool Card::operator^(const Card& a) const {return suit == a.suit;}	// Checks if suits are the same
+bool Card::operator^(const Card& a) const { return suit == a.suit; }	// Checks if suits are the same
 
-
-/**
- * Returns Card information
- *
- * @return the card information as a string
- */
-std::string Card::toString() const {
-	return rankAsStr[rank] + " of " + suitAsStr[suit];
-}
 
 /**
- * Prints out a card information
+ * Allows user to 'cout' Card objects
  */
-void Card::display() const {
-	std::cout << rankAsStr[rank] << " of " << suitAsStr[suit] << std::endl;
+std::ostream& operator<<(std::ostream& os, const Card& card) {
+	os << card.getRank() << " of " << card.getSuit();
+	return os;
 }

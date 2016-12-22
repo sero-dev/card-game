@@ -9,33 +9,33 @@
  */
 
 #include <iostream>
-#include "Deck.h"
-#include "Player.h"
+#include "LinkedList.h"
 
 using namespace std;
 
 int main() {
-	Deck deck;
-	Player player1("Sean", 500.00);
-	Player player2("Juhi", 1000.00);
 
-	deck.shuffle();
+	LinkedList list;
 
-	player1.hit(deck.deal());
-	player1.hit(deck.deal());
-	player2.hit(deck.deal());
-	player2.hit(deck.deal());
+	Card* card1 = new Card(11, 2); // Jack of Club
 
-	cout << "Player 1 Hand" << endl;
-	player1.displayHand();
+	list.insertAtIndex(new Card(0, 0), 0);
+	list.insertAtIndex(new Card(1, 0), 1);
+	list.insertAtIndex(new Card(2, 0), 1);
+	list.insertAtIndex(new Card(3, 0), 1);
+	list.insertAtIndex(card1, 1);
 
-	cout << "Player 2 Hand" << endl;
-	player2.displayHand();
-
-	cout << "Player ";
-	if (player1 > player2) cout << "1 Wins!";
-	else cout << "2 Wins!";
+	cout << list << endl;
+	cout << "Size: " << list.getSize() << endl;
+	cout << "Head: " << *list.getHead() << endl;
+	cout << "Tail: " << *list.getTail() << endl;
+	cout << "Index 2: " << *list.getAtIndex(2) << endl;
 	cout << endl;
+
+	cout << "Search for " << *card1 << endl;
+	cout << "Located at: " << list.search(card1) << endl;
+	list.remove(card1);
+	cout << list << endl;
 
 	return 0;
 }

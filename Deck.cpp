@@ -16,7 +16,7 @@
  * Initializes deck
  */
 Deck::Deck() {
-	deck = new Stack(52);					// Creates a stack of 52
+	deck = new Stack<Card*>(DEFAULT_DECK_SIZE);	// Creates a stack of 52
 
 	for(int i = 0; i < 4; i++)				// For every suit...
 		for(int j = 0; j < 13; j++)			// ... of every rank... 
@@ -28,6 +28,16 @@ Deck::Deck() {
  */
 Deck::~Deck() {
 	delete deck;
+}
+
+Deck::Deck(const Deck& copy) {
+	deck = new Stack<Card*>(*copy.deck);
+}
+
+Deck Deck::operator=(const Deck& copy) {
+	delete deck;
+	deck = new Stack<Card*>(*copy.deck);
+	return *this;
 }
 
 /**
@@ -81,9 +91,15 @@ void Deck::swap(Card* a, Card* b) {
 	*b = temp;
 }
 
+Stack<Card*> Deck::getDeck() const {
+	return *deck;
+}
+
 /**
  * Displays the deck from top to bottom
  */
-void Deck::display() const {
-	deck->display();
+std::ostream& operator<<(std::ostream& os, const Deck& deck) {
+	os << deck.getDeck() << std::endl;
+
+	return os;
 }
