@@ -3,7 +3,7 @@
  * Name: Deck.cpp
  * Purpose: Creates a stack of Card* to represent a deck
  *
- * @author Sean Rodriguez <sean.rodriguez@gmail.com>
+ * @author Sean Rodriguez <sean.rodriguez@outlook.com>
  * @copyright Sean Rodriguez October 21, 2016
  * @version 1.0
  */

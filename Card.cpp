@@ -3,7 +3,7 @@
  * Name: Card.cpp
  * Purpose: Creates a card object that holds a rank, suit, and value 
  *
- * @author Sean Rodriguez <sean.rodriguez@gmail.com>
+ * @author Sean Rodriguez <sean.rodriguez@outlook.com>
  * @copyright Sean Rodriguez October 21, 2016
  * @version 1.0
  */
@@ -30,7 +30,7 @@ Card::Card() {
  * @param suit of the card
  */
 Card::Card(int r, int s) {
-	rank = r;
+	rank = r + 1;
 	suit = s;
 	value = r + 1;
 }
@@ -43,7 +43,7 @@ Card::Card(int r, int s) {
  * @param value of the card
  */
 Card::Card(int r, int s, int v) {
-	rank = r;
+	rank = r + 1;
 	suit = s;
 	value = v;
 }
@@ -58,8 +58,8 @@ void Card::setValue(int v) { value = v; }
 /**
  * Accessor Methods
  */
-std::string Card::getRank() const { return rankAsStr[rank]; }
-std::string Card::getSuit() const { return suitAsStr[suit]; }
+int Card::getRank() const { return rank; }
+int Card::getSuit() const { return suit; }
 int Card::getValue() const { return value; }
 
 /**
@@ -85,6 +85,6 @@ bool Card::operator^(const Card& a) const { return suit == a.suit; }	// Checks i
  * Allows user to 'cout' Card objects
  */
 std::ostream& operator<<(std::ostream& os, const Card& card) {
-	os << card.getRank() << " of " << card.getSuit();
+	os << card.rankAsStr[card.getRank() - 1] << " of " << card.suitAsStr[card.getSuit()];
 	return os;
 }

@@ -3,28 +3,31 @@
  * Name: LinkedList.cpp
  * Purpose: Implements a data structure based on a naive LinkedList
  *
- * @author Sean Rodriguez <sean.rodriguez@gmail.com>
+ * @author Sean Rodriguez <sean.rodriguez@outlook.com>
  * @copyright Sean Rodriguez December 21, 2016
  * @version 1.0
- *
  */
 
 #include "LinkedList.h"
 
+// Default Constructor
 LinkedList::LinkedList() :
 	head(NULL),
 	tail(head),
 	size(0)
 {}
 
+// Returns head of the list
 Card* LinkedList::getHead() {
 	return head->getData();
 }
 
+// Returns tail of the list
 Card* LinkedList::getTail() {
 	return tail->getData();
 }
 
+// Returns data from specified index
 Card* LinkedList::getAtIndex(int index) {
 	if (index >= size) return tail->getData();
 
@@ -36,8 +39,10 @@ Card* LinkedList::getAtIndex(int index) {
 	return current->getData();
 }
 
+// Gets size of the LinkedList
 int LinkedList::getSize() const { return size; }
 
+// Inserts data at specified index
 void LinkedList::insertAtIndex(Card* card, int index) {
 	Node* inserted = new Node(card);
 	
@@ -60,6 +65,7 @@ void LinkedList::insertAtIndex(Card* card, int index) {
 	size++;
 }
 
+// Removes data at specified index
 Card* LinkedList::removeAtIndex(int index) {
 	Card* removed;
 
@@ -80,14 +86,17 @@ Card* LinkedList::removeAtIndex(int index) {
 	return removed;
 }
 
+// Removes exact data, if found
 Card* LinkedList::remove(Card* card) {
 	return removeAtIndex(search(card));
 }
 
+// Check if list contains an exact card, returns false if not found
 bool LinkedList::contains(Card* card) {
 	return (search(card) >= 0);
 }
 
+// Searches list for an exact card, returns -1 if not found
 int LinkedList::search(Card* data) {
 	int index = 0;
 	Node* current = head;
@@ -103,18 +112,21 @@ int LinkedList::search(Card* data) {
 	return -1;
 }
 
+// Inserts data in the front of the list
 void LinkedList::insertAtHead(Card* data) {
 	Node* temp = new Node(data);
 	if(head != NULL) temp->setNext(head);
 	head = temp;
 }
 
+// Inserts data in the back of the list
 void LinkedList::insertAtTail(Card* data) {
 	Node* inserted = new Node(data);
 	if (tail != NULL) tail->setNext(inserted);
 	tail = inserted;
 }
 
+// Removes data from the front of the list
 Card* LinkedList::removeAtHead() {
 	if (isEmpty()) return NULL;
 
@@ -124,6 +136,7 @@ Card* LinkedList::removeAtHead() {
 	return removed->getData();
 }
 
+// Removes data from the back of the list
 Card* LinkedList::removeAtTail() {
 	if (isEmpty()) return NULL;
 
@@ -139,20 +152,23 @@ Card* LinkedList::removeAtTail() {
 	return removed->getData();
 }
 
+// Checks if LinkedList is empty
 bool LinkedList::isEmpty() const {
 	return (size == 0);
 }
 
-const Card& LinkedList::operator[](int index) {
+// Overloaded [] operators
+Card* LinkedList::operator[](int index) {
 	Node* current = head;
 		 
 	for (int i = 0; i < index; i++) {
 		current = current->getNext();
 	}
 
-	return *current->getData();
+	return current->getData();
 }
 
+// Overloaded << operator
 std::ostream& operator<<(std::ostream& os, const LinkedList& list) {
 	LinkedList::Node* current = list.head;
 

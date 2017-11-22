@@ -3,7 +3,7 @@
  * Name: Card.h
  * Purpose: Creates a card object that holds a rank, suit, and value
  *
- * @author Sean Rodriguez <sean.rodriguez@gmail.com>
+ * @author Sean Rodriguez <sean.rodriguez@outlook.com>
  * @copyright Sean Rodriguez October 21, 2016
  * @version 1.0
  */
@@ -35,8 +35,8 @@ public:
 	void setValue(int value);
 	
 	// Accessor Functions
-	std::string getRank() const;
-	std::string getSuit() const;
+	int getRank() const;
+	int getSuit() const;
 	int getValue() const;
 	
 	

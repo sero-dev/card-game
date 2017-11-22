@@ -3,7 +3,7 @@
  * Name: Stack.h
  * Purpose: Creates a data structure that mimics the Standard Stack class
  *
- * @author Sean Rodriguez <sean.rodriguez@gmail.com>
+ * @author Sean Rodriguez <sean.rodriguez@outlook.com>
  * @copyright Sean Rodriguez October 21, 2016
  * @version 1.0
  */
